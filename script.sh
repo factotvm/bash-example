@@ -2,6 +2,8 @@
 
 set -eo pipefail
 
+START_TIME=$SECONDS
+
 echo "--- :package: Build job checkout directory"
 
 pwd
@@ -32,3 +34,9 @@ function inline_image {
 }
 
 inline_image 'artifact://artifacts/image.gif' 'Rainbows'
+
+sleep 65
+
+ELAPSED_TIME=$(($SECONDS - $START_TIME))
+
+echo "$(($ELAPSED_TIME/60)) min $(($ELAPSED_TIME%60)) sec"
